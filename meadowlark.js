@@ -1,20 +1,35 @@
-const express = require('express')
+const express = require("express");
 
-const app = express()
+const app = express();
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
+
+app.get("/", (req, res) => {
+  res.type("text/plain");
+  res.send("Express Travel");
+});
+
+app.get("/about", (req, res) => {
+  res.type("text/plain");
+  res.send("Express Travel - About");
+});
 
 app.use((req, res) => {
-    res.type('text/plain')
-    res.status(404)
-    res.send('404 - Not Found')
-})
+  res.type("text/plain");
+  res.status(404);
+  res.send("404 - Not Found");
+});
 
 app.use((err, req, res, next) => {
-    console.error(err.message)
-    res.type('text/plain')
-    res.status(500)
-    res.send('500 - Server Error')
-})
+  console.error(err.message);
+  res.type("text/plain");
+  res.status(500);
+  res.send("500 - Server Error");
+});
 
-app.listen(port, () => console.log(`Express started on http://localhost:${port}` + `press Ctrl - C to terminate.`))
+app.listen(port, () =>
+  console.log(
+    `Express started on http://localhost:${port}` +
+      `press Ctrl - C to terminate.`
+  )
+);
